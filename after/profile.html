@@ -1,0 +1,232 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<body background="images/s.jpg">
+<div class="container emp-profile">
+<div style="padding-left: 1100px"><a href="http://localhost/after/index.html"><img src="images/home.png" height="35" width="45"></a></div>
+            <!-- <form method="post">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="images/profile.jpg" height="30%" width="40%" alt=""/>
+                        </div>
+                          <span class="col-md-8">
+                        <span class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Unique Name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p id="name">Kshiti Ghelani</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6" id="phone">
+                                                <p>123 456 7890</p>
+                                            </div>
+                                        </div>
+
+                                           <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Address</label>
+                                            </div>
+                                            <div class="col-md-6" id="phone">
+                                                <p id="address">Address</p>
+                                            </div>
+                                        </div>
+                            </div>
+                          
+                        </span>
+                    </span>
+                    </div>
+                   <!--  <div class="col-md-6" style="position: relative ;margin-bottom: 5%;">
+                      <ul class="nav nav-tabs" id="myTab" role="tablist" style="position: absolute;  bottom: 0; left: 0;">
+                                <li class="nav-item" style="background-color: yellow ;">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                </li>
+                            </ul>
+                    </div> -->
+             <!--        
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                            <div class="profile-head">
+                                    <h5 id="hname" >
+                                        Kshiti Ghelani
+                                    </h5>
+                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                                    <a  href="http://localhost/cgi-bin/order_details.py"> View Previous Orders</a>
+                          
+                        </div>
+                    </div>
+                  
+                </div>
+            </form>   -->  
+<center>
+<table cellspacing="1">
+    <tr>
+        <td rowspan="3"><img src="images/profile.jpg" height="30%" width="40%" alt=""></td>
+        <td width=25%> <label>Unique Name</label></td>
+        <td  width=25% id="name">Kshiti Ghelani</td>
+    </tr>
+    <tr> 
+    <td><label>Phone</label></td>
+    <td id="phone">123 456 7890</td>
+    </tr>
+    <tr><td><label>Address</label></td>
+    <td id="address">Address</td>
+    </tr>
+
+</table>
+</center>
+
+
+
+        </div>
+        <center>
+        <div style="margin: 5%">
+         <button><a  href="http://localhost/cgi-bin/order_details.py"> View previous orders</a></button>  
+        </div></center>
+<script type="text/javascript" >
+    function loadJSON(callback) {
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'profile.json', true);
+    xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+
+  // .open will NOT return a value but simply returns undefined in async mode so use a callback
+  callback(xobj.responseText);
+
+  }
+  }
+  xobj.send(null);
+
+  }
+  var x=document.getElementById("name");
+  var z=document.getElementById("hname");
+  var a=document.getElementById("phone");
+  var c=document.getElementById("address");
+
+  // Call to function with anonymous callback
+  loadJSON(function(response) {
+  // Do Something with the response e.g.
+
+  jsonresponse = JSON.parse(response);
+   console.log(jsonresponse);
+  for(i=0 ; i<=jsonresponse.User.length-1 ; i++)
+  { 
+    var y=jsonresponse.User[i].Username;
+    var b=jsonresponse.User[i].Mobile;
+    var d=jsonresponse.User[i].Address;
+    x.innerHTML=y;
+    z.innerHTML=y;
+    a.innerHTML=b;
+    c.innerHTML=d;
+  }
+
+  // Assuming json data is wrapped in square brackets as Drew suggests
+  });
+</script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<div class="slider-holder" >
+        <span id="slider-image-1"></span>
+        <span id="slider-image-2"></span>
+        <span id="slider-image-3"></span>
+        <div class="image-holder">
+            <img src="images/1.jpg" width="600" height="250" class="slider-image" />
+            <img src="images/2.jpg" width="600" height="250" class="slider-image" />
+            <img src="images/3.jpg" width="600" height="250" class="slider-image" />
+        </div>
+        <div class="button-holder">
+            <a href="#slider-image-1" class="slider-change"></a>
+            <a href="#slider-image-2" class="slider-change"></a>
+            <a href="#slider-image-3" class="slider-change"></a>
+        </div>
+    </div>
+</body>
+<style type="text/css">
+    body{
+         color: yellow;}
+         li.nav-item
+         {
+            background-color: yellow; 
+         }
+
+          .slider-holder
+        {
+            width: 600px;
+            height: 250px;
+            background-color: yellow;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .image-holder
+        {
+            width: 1800px;
+            background-color: red;
+            height: 250px;
+            clear: both;
+            position: relative;
+            
+            -webkit-transition: left 2s;
+            -moz-transition: left 2s;
+            -o-transition: left 2s;
+            transition: left 2s;
+        }
+        
+        .slider-image
+        {
+            float: left;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+        }
+        
+        #slider-image-1:target ~ .image-holder
+        {
+            left: 0px;
+        }
+        
+        #slider-image-2:target ~ .image-holder
+        {
+            left: -600px;
+        }
+        
+        #slider-image-3:target ~ .image-holder
+        {
+            left: -1200px;
+        }
+        
+        .button-holder
+        {
+            position: relative;
+            top: -20px;
+            width: 600px;
+            height: 40px;
+        }
+        
+        .slider-change
+        {
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            background-color: blue;
+
+        }
+
+</style>
+
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->

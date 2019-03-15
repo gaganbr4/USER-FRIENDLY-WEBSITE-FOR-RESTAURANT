@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body  bgcolor="#61122f">
+<center>
+<h1 style="color: orange">Your Previous Orders!!</h1>
+<table id="inventory" border="2" cellspacing="2" style="color: yellow ; margin-top: 10%;">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Details</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody id="screen">
+  </tbody>
+</table>
+</center>
+
+
+</body>
+  <script>
+
+
+    // $( document ).ready(function(){
+    //   $('#screen').html(localStorage.getItem("data"));
+      
+    // });
+
+ function loadJSON(callback) {
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', 'orders.json', true);
+    xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+
+  // .open will NOT return a value but simply returns undefined in async mode so use a callback
+  callback(xobj.responseText);
+
+  }
+  }
+  xobj.send(null);
+}
+
+  loadJSON(function(response) {
+  // Do Something with the response e.g.
+
+  jsonresponse = JSON.parse(response);
+   console.log(jsonresponse);
+  for(i=0 ; i<=jsonresponse.Order.length-1 ; i++)
+  { 
+    var y=jsonresponse.Order[i].ID;
+    var b=jsonresponse.Order[i].Details;
+    var d=jsonresponse.Order[i].Sum;
+ 
+ var str = '<tr class = "boxType"><td>'+y+'</td>\
+ <td>'+b+'</td>\
+ <td>'+d+'</td>\
+</tr>'
+       $('#screen').append(str);
+  }
+
+  // Assuming json data is wrapped in square brackets as Drew suggests
+  });
+
+
+      // localStorage.setItem("data", $('#screen').html());
+    
+  </script>
